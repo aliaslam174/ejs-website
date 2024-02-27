@@ -1,0 +1,33 @@
+<%- include('./partials/header.ejs') %>
+   
+
+<% if (message !="") { %>
+  <div class="alert alert-success">
+      <%= message %>
+  </div>
+<% } %>
+
+<div class="container">
+    <h1 class="text-center mb-4">blog page</h1>
+    <a href="/postform" class="btn btn-outline-success mb-3">Create Post</a>
+    <div class="row">
+      
+        <% posts.forEach(function(post){ %>
+            <div class="col-3 mb-4">
+                <div class="card" >
+                    <img src="<%= post.imageUrl %>" class="card-img-top " alt="..." width="200px" height="200px">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= post.content %></h5>
+                     
+                      <a href="#" class="btn btn-danger">delete</a>
+                    </div>
+                  </div>
+            </div>
+          <% }); %>
+       
+      </div>
+</div>
+
+
+
+    <%- include('./partials/footer.ejs') %>
