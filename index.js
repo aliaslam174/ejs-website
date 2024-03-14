@@ -5,22 +5,23 @@ const port = 3001;
 const mongoose = require('mongoose');
 const post =require('./models/post')
 var bodyParser = require('body-parser')
-const session = require('express-session');
-const flash = require('express-flash');
+// const session = require('express-session');
+
+// const flash = require('express-flash');
 
 // middle weare
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
 // Session middleware
-app.use(session({
-    secret: 'dffskjhkusyerhu',
-    resave: false,
-    saveUninitialized: true
-}));
+// app.use(session({
+//     secret: 'dffskjhkusyerhu',
+//     resave: false,
+//     saveUninitialized: true
+// }));
 
 // Flash middleware
-app.use(flash());
+// app.use(flash());
 // Define a route
 // app.get('/', (req, res) => {
 // const title="home"
@@ -35,8 +36,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.get("/blog",async(req,res)=>{
 
     const posts=await post.find({})
-     res.render('blog',{posts:posts ,message: req.flash('message')})
-
+     res.render('blog',{posts:posts})
+    //  message: req.flash('message')
 })
 app.get("/postform",(req,res)=>{
 
@@ -49,7 +50,7 @@ app.post("/createpost",async(req,res)=>{
         // create post
         const newPost = await post.create({ content: req.body.content, imageUrl: req.body.imageUrl, authorId: "65bb926686ce77b32cc9bfe8" });
         
-        req.flash('message', 'Post successfully created');
+        // req.flash('message', 'Post successfully created');
         return res.redirect("/blog");
       } catch (error) {
           console.log(error.message);
