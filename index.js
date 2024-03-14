@@ -60,7 +60,7 @@ app.post("/createpost",async(req,res)=>{
 app.get('/:pages?', (req, res) => {
   
     try {
-        res.render(`${req.params.pages ? req.params.pages : "index"}`);
+        res.render(`${req.params.pages ? req.params.pages : "index.ejs"}`);
     } catch (err) {
         console.error(err);
         res.status(501).send('Internal Server Error dfsf');
